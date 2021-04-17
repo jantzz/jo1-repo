@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html> 
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="jo1storage.json"></script> 
+    </head>
+    <body>
+        <table style="border: 1px;"> 
+            <tbody id="tb">
+
+            </tbody>
+        </table>
+        
+
+        <script> 
+        $('document').ready(function(){
+            $.getJSON("jo1storage.json", function(data){
+                var i; 
+                var l = data.length; 
+                
+                for(i = 0; i < data.length; i++){
+                    console.log(data);
+                    $('#tb').append("<tr> <td>First Name: " + data[i].firstname + "</td> <td> Last Name " + data[i].lastname +
+                     "</td> <td> Grade level: " + data[i].gradeLvl + "</td> <td> Section: " + data[i].section + "</td><td> Club: " +
+                     data[i].club + "</td> <td> Email: " + data[i].email + "</td><td> Status: " + data[i].status + "</td> </tr>s");                    
+                     console.log(data[i]);
+                }
+                
+            });
+
+        });
+        
+
+
+
+
+        </script>
+
+    </body>
+</html>
