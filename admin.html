@@ -3,11 +3,46 @@
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
         <script type="text/javascript" src="jo1storage.json"></script> 
+        <style>
+            body{
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow-x: hidden;
+            }
+
+            table{ 
+                border-collapse: collapse; 
+                width: 90%;  
+            }
+
+            td, th{
+                border:1px solid black;
+                padding: 5px;
+            }
+
+            tr:nth-child(even){
+                background-color:darkgrey;
+            }
+
+            th{ 
+                padding: 10px;
+                text-align: left;
+            }
+        </style>
     </head>
     <body>
         <table style="border: 1px;"> 
             <tbody id="tb">
-
+                <th>First Name </th>
+                <th>Last Name </th>
+                <th>Grade Level </th>
+                <th>Section </th>
+                <th>Club </th>
+                <th>Email </th>
+                <th>Status </th>
             </tbody>
         </table>
         
@@ -20,9 +55,9 @@
                 
                 for(i = 0; i < data.length; i++){
                     console.log(data);
-                    $('#tb').append("<tr> <td>First Name: " + data[i].firstname + "</td> <td> Last Name " + data[i].lastname +
-                     "</td> <td> Grade level: " + data[i].gradeLvl + "</td> <td> Section: " + data[i].section + "</td><td> Club: " +
-                     data[i].club + "</td> <td> Email: " + data[i].email + "</td><td> Status: " + data[i].status + "</td> </tr>s");                    
+                    $('#tb').append("<tr> <td> " + data[i].firstname + "</td> <td> " + data[i].lastname +
+                     "</td> <td> " + data[i].gradeLvl + "</td> <td>" + data[i].section + "</td><td>" +
+                     data[i].club + "</td> <td>" + data[i].email + "</td><td> " + data[i].status + "</td> </tr>s");                    
                      console.log(data[i]);
                 }
                 
