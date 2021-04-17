@@ -53,13 +53,29 @@
                 var i; 
                 var l = data.length; 
                 
-                for(i = 0; i < data.length; i++){
-                    console.log(data);
-                    $('#tb').append("<tr> <td> " + data[i].firstname + "</td> <td> " + data[i].lastname +
-                     "</td> <td> " + data[i].gradeLvl + "</td> <td>" + data[i].section + "</td><td>" +
-                     data[i].club + "</td> <td>" + data[i].email + "</td><td> " + data[i].status + "</td> </tr>s");                    
-                     console.log(data[i]);
-                }
+                //for(i = 0; i < data.length; i++){
+                //    console.log(data);
+                //    $('#tb').append("<tr> <td> " + data[i].firstname + "</td> <td> " + data[i].lastname +
+                //     "</td> <td> " + data[i].gradeLvl + "</td> <td>" + data[i].section + "</td><td>" +
+                //     data[i].club + "</td> <td>" + data[i].email + "</td><td> " + data[i].status + "</td> </tr>s");                    
+                //     console.log(data[i]);
+                //}
+
+                //another method 
+
+                var table_data = ''
+                $.each(data, function(key, value){
+                    table_data += '<tr>';
+                    table_data += '<td>' + value.firstname + '</td>';
+                    table_data += '<td>' + value.lastname + '</td>';
+                    table_data += '<td>' + value.gradeLvl + '</td>';
+                    table_data += '<td>' + value.section + '</td>';
+                    table_data += '<td>' + value.club + '</td>';
+                    table_data += '<td>' + value.email + '</td>';
+                    table_data += '<td>' + value.status + '</td>';
+                }); 
+                $('#tb').append(table_data);
+                
                 
             });
 
