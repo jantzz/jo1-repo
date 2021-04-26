@@ -7,10 +7,13 @@
             body{
                 width: 100%;
                 height: 100%;
-                display: flex;
                 justify-content: center;
                 align-items: center;
                 overflow-x: hidden;
+            }
+
+            .clubs{
+                border: 1px solid black;
             }
 
             table{ 
@@ -34,7 +37,8 @@
         </style>
     </head>
     <body>
-        <table style="border: 1px;"> 
+        <div>
+        <table id="main" style="border: 1px;"> 
             <tbody id="tb">
                 <th>First Name </th>
                 <th>Last Name </th>
@@ -43,13 +47,86 @@
                 <th>Club </th>
                 <th>Email </th>
                 <th>Status </th>
+                <th>Accept/Decline </th>
+            </tbody>
+        </table>
+    </div>
+    <div>   
+        <table class="clubs" style="border: 1px;">
+            <tbody id="Espt">
+               <th colspan="5">E-sports Club</th>
+               <tr>
+                   <th>First Name</th>
+                   <th>Last Name</th>
+                   <th>Grade level</th>
+                   <th> Section </th>
+                   <th>Email</th>
+               </tr> 
+            </tbody>
+        </table>
+    </div>
+        <table class="clubs" style="border: 1px;">
+            <tbody id="Cook">
+               <th colspan="5">Cooking Club</th>
+               <tr>
+                   <th>First Name</th>
+                   <th>Last Name</th>
+                   <th>Grade level</th>
+                   <th> Section </th>
+                   <th>Email</th>
+               </tr> 
+            </tbody>
+        </table>
+
+        <table class="clubs" style="border: 1px;">
+            <tbody id="dance">
+               <th colspan="5">Dancing Club</th>
+               <tr>
+                   <th>First Name</th>
+                   <th>Last Name</th>
+                   <th>Grade level</th>
+                   <th> Section </th>
+                   <th>Email</th>
+               </tr> 
+            </tbody>
+        </table>
+
+        <table class="clubs" style="border: 1px;">
+            <tbody id="sing">
+               <th colspan="5">Choir</th>
+               <tr>
+                   <th>First Name</th>
+                   <th>Last Name</th>
+                   <th>Grade level</th>
+                   <th> Section </th>
+                   <th>Email</th>
+               </tr> 
             </tbody>
         </table>
         
-
+        <script>
+            
+                function accept(email){}
+            
+            
+        </script>
         <script> 
         $('document').ready(function(){
+
+            
             $.getJSON("jo1storage.json", function(data){
+                
+                function accept(){
+                    current = email; 
+                    for(i = 0; i < data.length; i++){
+                        if(current in data[i].email){
+                            data[i].status = "Accepted";
+                            console.log("works");
+                            break;
+                        }
+                    }
+                }
+
                 var i; 
                 var l = data.length; 
                 
@@ -63,7 +140,11 @@
 
                 //another method 
 
-                var table_data = ''
+                var table_data = '';
+                var Esport ='';
+                var cooking =''; 
+                var choir=''; 
+                var dancing =''; 
                 $.each(data, function(key, value){
                     table_data += '<tr>';
                     table_data += '<td>' + value.firstname + '</td>';
@@ -73,9 +154,49 @@
                     table_data += '<td>' + value.club + '</td>';
                     table_data += '<td>' + value.email + '</td>';
                     table_data += '<td>' + value.status + '</td>';
+                    table_data += '<td> <button class="bttnYes" onclick="accept(value.email)"> Accept </button> <button class="bttnNo"> Decline </button> </td>';
+
+                    if(value.status == 'Accepted'){
+                        if(value.club == "esports"){
+                            Esport += '<tr>';
+                            Esport += '<td>' + value.firstname + '</td>';
+                            Esport += '<td>' + value.lastname + '</td>';
+                            Esport += '<td>' + value.gradeLvl + '</td>';
+                            Esport += '<td>' + value.section + '</td>';
+                            Esport += '<td>' + value.email + '</td>';
+                        }
+                        if(value.club == 'Cooking' ){
+                            cooking += '<tr>';
+                            cooking += '<td>' + value.firstname + '</td>';
+                            cooking += '<td>' + value.lastname + '</td>';
+                            cooking += '<td>' + value.gradeLvl + '</td>';
+                            cooking += '<td>' + value.section + '</td>';
+                            cooking += '<td>' + value.email + '</td>';
+                        }
+                        if(value.club == 'dancing' ){
+                            dancing += '<tr>';
+                            dancing += '<td>' + value.firstname + '</td>';
+                            dancing += '<td>' + value.lastname + '</td>';
+                            dancing += '<td>' + value.gradeLvl + '</td>';
+                            dancing += '<td>' + value.section + '</td>';
+                            dancing += '<td>' + value.email + '</td>';
+                        }
+                        if(value.club == 'Singing' ){
+                            choir += '<tr>';
+                            choir += '<td>' + value.firstname + '</td>';
+                            choir += '<td>' + value.lastname + '</td>';
+                            choir += '<td>' + value.gradeLvl + '</td>';
+                            choir += '<td>' + value.section + '</td>';
+                            choir += '<td>' + value.email + '</td>';
+                        }
+                    }
                 }); 
                 $('#tb').append(table_data);
-                
+                $('#esprt').append(Esport);
+                $('#Cook').append(cooking);
+                $('#sing').append(choir);
+                $('#dance').append(dancing);
+            
                 
             });
 
